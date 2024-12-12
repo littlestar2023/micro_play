@@ -1,0 +1,41 @@
+customize-config:
+  etcd:
+    address: 192.168.18.243
+    port: 2379
+
+system:
+  use-db: true
+  use-redis: true
+
+mysql:
+  path: 192.168.18.242
+  port: "3306"
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: go_micro_play
+  username: root
+  password: 123456
+  prefix: ""
+  singular: false
+  engine: ""
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: error
+  log-zap: false
+  debug: true
+
+redis:
+  db: 1
+  addr: 192.168.18.244:6379
+  password:
+
+zap:
+  level: info
+  prefix: '[go-micro-play] '
+  format: console
+  director: log
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  max-age: 0
+  show-line: false
+  log-in-console: true
+
