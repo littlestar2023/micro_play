@@ -9,7 +9,9 @@ var (
 )
 
 type ApplicationConfig struct {
-	EtcdConfig EtcdConfig `mapstructure:"etcd" json:"etcd" yaml:"etcd"`
+	EtcdConfig      EtcdConfig `mapstructure:"etcd" json:"etcd" yaml:"etcd"`
+	HostServiceName string     `mapstructure:"host_service_name" json:"host_service_name" yaml:"host_service_name"`
+	HostServiceAddr string     `mapstructure:"host_service_addr" json:"host_service_addr" yaml:"host_service_addr"`
 }
 
 type EtcdConfig struct {

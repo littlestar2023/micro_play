@@ -1,4 +1,6 @@
 customize-config:
+  host_service_name: ""
+  host_service_addr: ""
   etcd:
     address: 192.168.18.243
     port: 2379
