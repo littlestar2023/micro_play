@@ -1,13 +1,12 @@
 customize-config:
-  host_service_name: "user_service"
-  host_service_addr: "0.0.0.0"
+  host_service_name: ""
+  host_service_addr: ""
   etcd:
     address: 192.168.18.243
     port: 2379
 
 system:
-  use-db: true
-  use-redis: true
+  db-type: mysql
 
 mysql:
   path: 192.168.18.242

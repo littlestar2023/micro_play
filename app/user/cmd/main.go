@@ -5,6 +5,7 @@ import (
 	"github.com/go-micro/plugins/v4/registry/etcd"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/registry"
+	"micro_play/app/user/repository/db"
 	"micro_play/app/user/service"
 	"micro_play/config"
 	"micro_play/idl/pb"
@@ -13,6 +14,7 @@ import (
 func main() {
 
 	config.InitConfig()
+	db.InitDb()
 
 	etcdReg := etcd.NewRegistry(registry.Addrs(fmt.Sprintf("%v:%v", config.GlobalConfig.EtcdConfig.Address, config.GlobalConfig.EtcdConfig.Port)))
 	microService := micro.NewService(
