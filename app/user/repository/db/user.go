@@ -7,7 +7,7 @@ import (
 
 func FindUserByUserName(userName string) (user *model.User, err error) {
 
-	err = global.CMP_DB.Model(&model.User{}).Where("user_name = ?", user).First(user).Error
+	err = global.CMP_DB.Model(&model.User{}).Where("user_name = ?", userName).First(user).Error
 
 	return
 }
