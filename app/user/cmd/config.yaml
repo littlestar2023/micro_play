@@ -1,6 +1,6 @@
 customize-config:
   host_service_name: "micro-user-service"
-  host_service_addr: "192.168.18.21:16001"
+  host_service_addr: "0.0.0.0:8080"
   etcd:
     address: 192.168.18.243
     port: 2379
