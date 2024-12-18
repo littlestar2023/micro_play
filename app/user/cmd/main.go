@@ -15,7 +15,6 @@ func main() {
 
 	config.InitConfig()
 	db.InitDb()
-
 	etcdReg := etcd.NewRegistry(registry.Addrs(fmt.Sprintf("%v:%v", config.GlobalConfig.EtcdConfig.Address, config.GlobalConfig.EtcdConfig.Port)))
 
 	microService := micro.NewService(

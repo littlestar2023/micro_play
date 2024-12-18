@@ -2,14 +2,12 @@ package util
 
 import (
 	"fmt"
-	"os"
 )
 
-func GetHostServiceAddress(serviceIP, servicePort string) string {
+func GetHostServiceAddress(serviceIP, servicePort, podIP string) string {
 
-	envIP := os.Getenv("POD_IP")
-	if len(envIP) > 0 {
-		return fmt.Sprintf("%v:%v", envIP, servicePort)
+	if len(podIP) > 0 {
+		return fmt.Sprintf("%v:%v", podIP, servicePort)
 	} else {
 		return fmt.Sprintf("%v:%v", serviceIP, servicePort)
 	}
