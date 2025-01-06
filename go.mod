@@ -3,6 +3,7 @@ module micro_play
 go 1.22.0
 
 require (
+	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-micro/plugins/v4/registry/etcd v1.2.0
 	github.com/littlestar2023/common_pkg v0.0.0-20240619031548-2ea7cdb7ac6c

@@ -1,5 +1,5 @@
 syntax = "proto3";
-package services;
+package micro.services.demo;
 option go_package = "./;pb";
 
 message UserModel{
