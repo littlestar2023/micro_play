@@ -30,3 +30,9 @@ func (user *User) CheckPassword(password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.PasswordDigest), []byte(password))
 	return err == nil
 }
+
+// TokenData 带有token的Data结构
+type TokenData struct {
+	User  interface{} `json:"user"`
+	Token string      `json:"token"`
+}

@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: demo
-  name: task-service
+  name: micro-task
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: task-service
+      app: micro-task
   template:
     metadata:
       labels:
-        app: task-service
+        app: micro-task
     spec:
       containers:
-        - name: task-service
+        - name: micro-task
           image: registry.cn-hangzhou.aliyuncs.com/wxg-uat/micro-task-service:v0.1801
           workingDir: "/opt/service/"
           ports:

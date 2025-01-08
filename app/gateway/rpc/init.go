@@ -17,7 +17,7 @@ func InitRPC() {
 		micro.Name("userService.client"),
 		micro.WrapClient(wrappers.NewUserWrapper),
 	)
-	userService := pb.NewUserService("rpcUserService", userMicroService.Client())
+	userService := pb.NewUserService("micro-user-service", userMicroService.Client())
 	UserService = userService
 
 	// task
@@ -25,6 +25,6 @@ func InitRPC() {
 		micro.Name("taskService.client"),
 		micro.WrapClient(wrappers.NewTaskWrapper),
 	)
-	taskService := pb.NewTaskService("rpcTaskService", taskMicroService.Client())
+	taskService := pb.NewTaskService("micro-task-service", taskMicroService.Client())
 	TaskService = taskService
 }

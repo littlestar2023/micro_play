@@ -1,16 +1,20 @@
 package http
 
 import (
+	"fmt"
+	"github.com/littlestar2023/common_pkg/global"
+	"micro_play/idl/pb"
+	"micro_play/pkg/model"
+	"micro_play/pkg/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/CocaineCong/micro-todoList/app/gateway/rpc"
-	"github.com/CocaineCong/micro-todoList/idl/pb"
-	"github.com/CocaineCong/micro-todoList/pkg/ctl"
-	log "github.com/CocaineCong/micro-todoList/pkg/logger"
-	"github.com/CocaineCong/micro-todoList/pkg/utils"
-	"github.com/CocaineCong/micro-todoList/types"
+	"micro_play/app/gateway/ctl"
+	"micro_play/app/gateway/rpc"
+	//log "github.com/CocaineCong/micro-todoList/pkg/logger"
+	//"github.com/CocaineCong/micro-todoList/pkg/utils"
+	//"github.com/CocaineCong/micro-todoList/types"
 )
 
 // UserRegisterHandler 用户注册
@@ -22,7 +26,7 @@ func UserRegisterHandler(ctx *gin.Context) {
 	}
 	userResp, err := rpc.UserRegister(ctx, &req)
 	if err != nil {
-		log.LogrusObj.Errorf("UserRegister:%v", err)
+		global.CMP_LOG.Error(fmt.Sprintf("UserRegister:%v", err))
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "UserRegister RPC 调用失败"))
 		return
 	}
@@ -46,7 +50,7 @@ func UserLoginHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "GenerateToken 失败"))
 		return
 	}
-	res := &types.TokenData{
+	res := &model.TokenData{
 		User:  userResp,
 		Token: token,
 	}

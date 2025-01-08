@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: demo
+  name: micro-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-gateway
+  template:
+    metadata:
+      labels:
+        app: micro-gateway
+    spec:
+      containers:
+        - name: micro-gateway
+          image: registry.cn-hangzhou.aliyuncs.com/wxg-uat/micro-gateway-service:latest
+          workingDir: "/opt/service/"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-file
+              mountPath: /opt/service/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: config-file
+          configMap:
+            name: micro-gateway-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: demo
+  labels:
+    app: demo-gateway-service
+  name: demo-gateway-service
+spec:
+  selector:
+    app: micro-gateway
+  type: LoadBalancer
+  ports:
+    - port: 12000
+      protocol: TCP
+      targetPort: 12000

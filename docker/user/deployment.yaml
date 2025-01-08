@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: demo
-  name: user-service
+  name: micro-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: micro-user
   template:
     metadata:
       labels:
-        app: user-service
+        app: micro-user
     spec:
       containers:
-        - name: user-service
+        - name: micro-user
           image: registry.cn-hangzhou.aliyuncs.com/wxg-uat/micro-user-service:latest
           workingDir: "/opt/service/"
           ports:
