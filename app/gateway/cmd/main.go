@@ -21,8 +21,8 @@ func main() {
 
 	// 创建微服务实例，使用gin暴露http接口并注册到etcd
 	server := web.NewService(
-		web.Name("micro.http.dev"),
-		web.Address(":12000"),
+		web.Name(config.GlobalConfig.HostServiceName),
+		web.Address(config.GlobalConfig.HostServiceAddr),
 		// 将服务调用实例使用gin处理
 		web.Handler(router.InitRouters()),
 		web.Registry(etcdReg),

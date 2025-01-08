@@ -1,7 +1,10 @@
+# kubectl create configmap micro-gateway-config -n demo --from-file=config.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: demo
+  label:
+    app: micro-gateway
   name: micro-gateway
 spec:
   replicas: 1
@@ -15,7 +18,7 @@ spec:
     spec:
       containers:
         - name: micro-gateway
-          image: registry.cn-hangzhou.aliyuncs.com/wxg-uat/micro-gateway-service:latest
+          image: registry.cn-hangzhou.aliyuncs.com/wxg-uat/micro-gateway-service:010801
           workingDir: "/opt/service/"
           ports:
             - containerPort: 8080
@@ -27,19 +30,3 @@ spec:
         - name: config-file
           configMap:
             name: micro-gateway-config
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: demo
-  labels:
-    app: demo-gateway-service
-  name: demo-gateway-service
-spec:
-  selector:
-    app: micro-gateway
-  type: LoadBalancer
-  ports:
-    - port: 12000
-      protocol: TCP
-      targetPort: 12000
