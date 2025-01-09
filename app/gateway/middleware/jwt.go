@@ -24,6 +24,7 @@ func JWT() gin.HandlerFunc {
 			})
 			return
 		}
+
 		claims, err := utils.ParseToken(token)
 		if err != nil {
 			code = http.StatusUnauthorized
@@ -44,7 +45,8 @@ func JWT() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		ctl.InitUserInfo(c.Request.Context(), &ctl.UserInfo{Id: claims.Id})
+		c.Set("user_key", claims.Id)
+		ctl.InitUserInfo(c)
 		c.Next()
 	}
 }

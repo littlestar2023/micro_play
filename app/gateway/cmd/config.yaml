@@ -1,6 +1,6 @@
 customize-config:
-  host_service_name: "user_service"
-  host_service_addr: "0.0.0.0"
+  host_service_name: "gateway_service"
+  host_service_addr: "0.0.0.0:12000"
   etcd:
     address: 192.168.18.243
     port: 2379

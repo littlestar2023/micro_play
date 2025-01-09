@@ -10,13 +10,17 @@ import (
 	"github.com/spf13/cast"
 )
 
+var (
+	userKey = "user_key"
+)
+
 func ListTaskHandler(ctx *gin.Context) {
 	var taskReq pb.TaskRequest
 	if err := ctx.Bind(&taskReq); err != nil {
 		ctx.JSON(http.StatusBadRequest, ctl.RespError(ctx, err, "绑定参数失败"))
 		return
 	}
-	user, err := ctl.GetUserInfo(ctx.Request.Context())
+	user, err := ctl.GetUserInfo(ctx.Request.Context(), ctx.GetUint(userKey))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "获取用户信息错误"))
 		return
@@ -37,7 +41,7 @@ func CreateTaskHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, ctl.RespError(ctx, err, "绑定参数失败"))
 		return
 	}
-	user, err := ctl.GetUserInfo(ctx.Request.Context())
+	user, err := ctl.GetUserInfo(ctx.Request.Context(), ctx.GetUint(userKey))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "获取用户信息错误"))
 		return
@@ -57,7 +61,7 @@ func GetTaskHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, ctl.RespError(ctx, err, "绑定参数失败"))
 		return
 	}
-	user, err := ctl.GetUserInfo(ctx.Request.Context())
+	user, err := ctl.GetUserInfo(ctx.Request.Context(), ctx.GetUint(userKey))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "获取用户信息错误"))
 		return
@@ -78,7 +82,7 @@ func UpdateTaskHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, ctl.RespError(ctx, err, "绑定参数失败"))
 		return
 	}
-	user, err := ctl.GetUserInfo(ctx.Request.Context())
+	user, err := ctl.GetUserInfo(ctx.Request.Context(), ctx.GetUint(userKey))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "获取用户信息错误"))
 		return
@@ -99,7 +103,7 @@ func DeleteTaskHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, ctl.RespError(ctx, err, "绑定参数失败"))
 		return
 	}
-	user, err := ctl.GetUserInfo(ctx.Request.Context())
+	user, err := ctl.GetUserInfo(ctx.Request.Context(), ctx.GetUint(userKey))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, ctl.RespError(ctx, err, "获取用户信息错误"))
 		return
