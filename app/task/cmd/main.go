@@ -16,7 +16,10 @@ func main() {
 	config.InitConfig()
 	db.InitDb()
 
-	etcdReg := etcd.NewRegistry(registry.Addrs(fmt.Sprintf("%v:%v", config.GlobalConfig.EtcdConfig.Address, config.GlobalConfig.EtcdConfig.Port)))
+	etcdReg := etcd.NewRegistry(
+		registry.Addrs(fmt.Sprintf("%v:%v", config.GlobalConfig.EtcdConfig.Address, config.GlobalConfig.EtcdConfig.Port)),
+		etcd.Auth("root", "90!@#RCSdev"),
+	)
 
 	microService := micro.NewService(
 		micro.Name(config.GlobalConfig.HostServiceName),
@@ -26,5 +29,5 @@ func main() {
 
 	microService.Init()
 	_ = pb.RegisterTaskServiceHandler(microService.Server(), service.GetTaskSrv())
-	_ = microService.Run()
+	fmt.Printf("error: %v\n", microService.Run())
 }

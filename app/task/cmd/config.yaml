@@ -1,21 +1,23 @@
 customize-config:
   host_service_name: "micro-task-service"
-  host_service_addr: "192.168.18.21:8081"
+  host_service_addr: "192.168.1.134:10000"
   etcd:
-    address: 192.168.18.243
+    address: 47.236.140.65
     port: 2379
+#    address: 192.168.1.182
+#    port: 2379
 
 system:
   use-db: true
   db-type: mysql
 
 mysql:
-  path: 192.168.18.242
+  path: 192.168.1.182
   port: "3306"
   config: charset=utf8mb4&parseTime=True&loc=Local
-  db-name: go_micro_play
+  db-name: sms
   username: root
-  password: 123456
+  password: 90!@#RCSdev
   prefix: ""
   singular: false
   engine: ""
